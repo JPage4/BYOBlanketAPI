@@ -1,0 +1,11 @@
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\bin\Debug\netcoreapp2.0\BYOBlanketAPI.deps.json
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\bin\Debug\netcoreapp2.0\BYOBlanketAPI.runtimeconfig.json
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\bin\Debug\netcoreapp2.0\BYOBlanketAPI.runtimeconfig.dev.json
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\bin\Debug\netcoreapp2.0\BYOBlanketAPI.dll
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\bin\Debug\netcoreapp2.0\BYOBlanketAPI.pdb
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.csprojResolveAssemblyReference.cache
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.csproj.CoreCompileInputs.cache
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.AssemblyInfoInputs.cache
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.AssemblyInfo.cs
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.dll
+c:\users\jesse\source\repos\BYOBlanketAPI\BYOBlanketAPI\obj\Debug\netcoreapp2.0\BYOBlanketAPI.pdb
