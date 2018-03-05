@@ -24,7 +24,8 @@ namespace BYOBlanketAPI.Models
         public NapSpace NapSpace { get; set; }
 
         [Required]
-        public ApplicationUser UserId {get; set;}
-        public ApplicationUser UserEmail {get; set;}
+        public User UserId {get; set;}
+        public User UserEmail {get; set;}
+        public User User {get; set;}
     }
 }

@@ -24,10 +24,12 @@ namespace BYOBlanketAPI.Models
         public string Address { get; set; }
         [Required]
         public string PictureURL { get; set; }
+
         [Required]
-        public ApplicationUser User {get; set;}
+        public User UserId {get; set;}
         [Required]
-        public ApplicationUser UserEmail {get; set;}
+        public User UserEmail {get; set;}
+        public User User {get; set;}
 
     }
 }
