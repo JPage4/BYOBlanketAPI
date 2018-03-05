@@ -13132,11 +13132,11 @@
       "hideWarningsAndErrors": true
     },
     "restore": {
-      "projectUniqueName": "c:\\users\\jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\BYOBlanketAPI.csproj",
+      "projectUniqueName": "C:\\Users\\Jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\BYOBlanketAPI.csproj",
       "projectName": "BYOBlanketAPI",
-      "projectPath": "c:\\users\\jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\BYOBlanketAPI.csproj",
+      "projectPath": "C:\\Users\\Jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\BYOBlanketAPI.csproj",
       "packagesPath": "C:\\Users\\Jesse\\.nuget\\packages\\",
-      "outputPath": "c:\\users\\jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\obj\\",
+      "outputPath": "C:\\Users\\Jesse\\source\\repos\\BYOBlanketAPI\\BYOBlanketAPI\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

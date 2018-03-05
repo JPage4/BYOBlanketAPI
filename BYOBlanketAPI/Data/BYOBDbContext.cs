@@ -13,9 +13,9 @@ namespace BYOBlanketAPI.Data
         : base(options)
         {
         }
-        public DbSet<NapSpace> NapSpaces{ get; set; }
-        public DbSet<Reservation> Reservations{ get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<NapSpace> NapSpace{ get; set; }
+        public DbSet<Reservation> Reservation{ get; set; }
+        public DbSet<User> User { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -26,9 +26,6 @@ namespace BYOBlanketAPI.Models
         public string PictureURL { get; set; }
 
         [Required]
-        public User UserId {get; set;}
-        [Required]
-        public User UserEmail {get; set;}
         public User User {get; set;}
 
     }
