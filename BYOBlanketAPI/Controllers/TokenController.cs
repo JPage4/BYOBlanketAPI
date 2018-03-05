@@ -61,7 +61,7 @@ namespace BYOBlanketAPI.Controllers
             if (isValid)
             {
                 // Does the user already exist?
-                User user = _context.User.SingleOrDefault(u => u.UserName == username);
+                User user = _context.Users.SingleOrDefault(u => u.UserName == username);
 
                 if (user != null)
                 {
