@@ -13,5 +13,15 @@ namespace BYOBlanketAPI.Models
         public string FirstName { get; set; }
         [Required]
         public string LastName { get; set; }
+
+        public virtual ICollection<NapSpace> NapSpaces
+        {
+            get; set;
+        }
+
+        public virtual ICollection<Reservation> Reservations
+        {
+            get; set;
+        }
     }
 }

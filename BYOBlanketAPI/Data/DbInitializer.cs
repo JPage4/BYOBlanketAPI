@@ -23,19 +23,19 @@ namespace BYOBlanketAPI.Data
                 if (!context.User.Any(u => u.FirstName == "Jesse"))
                 {
                 //  This method will be called after migrating to the latest version.
-                User user = new User
-                {
-                    FirstName = "Jesse",
-                    LastName = "Page",
-                    UserName = "jesse@buttz.com",
-                    NormalizedUserName = "JESSE@BUTTZ.COM",
-                    Email = "jesse@buttz.com",
-                    NormalizedEmail = "JESSE@BUTTZ.COM",
-                    EmailConfirmed = true,
-                    LockoutEnabled = false,
-                    SecurityStamp = Guid.NewGuid().ToString("D")
-                };
-                var passwordHash = new PasswordHasher<User>();
+                    User user = new User
+                    {
+                        FirstName = "Jesse",
+                        LastName = "Page",
+                        UserName = "jesse@buttz.com",
+                        NormalizedUserName = "JESSE@BUTTZ.COM",
+                        Email = "jesse@buttz.com",
+                        NormalizedEmail = "JESSE@BUTTZ.COM",
+                        EmailConfirmed = true,
+                        LockoutEnabled = false,
+                        SecurityStamp = Guid.NewGuid().ToString("D")
+                    };
+                    var passwordHash = new PasswordHasher<User>();
                     user.PasswordHash = passwordHash.HashPassword(user, "jjjjjj");
                     await userstore.CreateAsync(user);
                 }
