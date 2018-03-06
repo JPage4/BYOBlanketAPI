@@ -11,7 +11,7 @@ using System;
 namespace BYOBlanketAPI.Migrations
 {
     [DbContext(typeof(BYOBDbContext))]
-    [Migration("20180306205243_InitialCreate")]
+    [Migration("20180306213846_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

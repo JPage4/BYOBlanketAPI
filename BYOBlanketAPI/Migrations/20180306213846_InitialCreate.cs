@@ -83,13 +83,13 @@ namespace BYOBlanketAPI.Migrations
                         column: x => x.NapSpaceId,
                         principalTable: "NapSpace",
                         principalColumn: "NapSpaceId",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                     table.ForeignKey(
                         name: "FK_Reservation_User_UserId",
                         column: x => x.UserId,
                         principalTable: "User",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateIndex(
