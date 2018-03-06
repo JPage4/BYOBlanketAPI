@@ -55,20 +55,18 @@ namespace BYOBlanketAPI.Data
                         Rules = "Please don't drool on the pillows",
                         Payment = "PayPal",
                         Address = "123 Buttz Lane",
-                        PictureURL = "pic.com"
-                        UserId = context.User.Single(n => n.Email == "jesse@buttz.com").UserId,
-                        UserEmail = context.User.Single(n => n.Email == "jesse@buttz.com").Email
+                        PictureURL = "pic.com",
+                        User = context.User.Single(n => n.Email == "jesse@buttz.com")
                     },
                     new NapSpace {
                         Title = "Tent",
                         Description = "Sick ass tent",
                         Price = "$3.50",
-                        Rules = "The nicest tent of all time. It's for glamping.",
+                        Rules = "It's for glamping only!",
                         Payment = "Cash Money",
                         Address = "1111 Yep Rd",
                         PictureURL = "pic.com",
-                        UserId = context.User.Single(n => n.Email == "jesse@buttz.com").UserId,
-                        UserEmail = context.User.Single(n => n.Email == "jesse@buttz.com").Email
+                        User = context.User.Single(n => n.Email == "jesse@buttz.com")
                     }
                 };
 
@@ -86,8 +84,7 @@ namespace BYOBlanketAPI.Data
                         StartDateTime = new DateTime(2018, 3, 15, 12, 0, 0),
                         EndDateTime = new DateTime(2018, 3, 15, 1, 0, 0),
                         NapSpaceId = context.NapSpace.Single(n => n.Title == "Tent").NapSpaceId,
-                        UserId = context.User.Single(n => n.Email == "jesse@buttz.com").UserId,
-                        UserEmail = context.User.Single(n => n.Email == "jesse@buttz.com").Email
+                        User = context.User.Single(n => n.Email == "jesse@buttz.com")
                     },
                    new Reservation
                    {
@@ -96,8 +93,7 @@ namespace BYOBlanketAPI.Data
                        StartDateTime = new DateTime(2018, 3, 15, 11, 0, 0),
                        EndDateTime = new DateTime(2018, 3, 15, 12, 0, 0),
                        NapSpaceId = context.NapSpace.Single(n => n.Title == "Big Comfy Couch").NapSpaceId,
-                       UserId = context.User.Single(n => n.Email == "jesse@buttz.com").UserId,
-                       UserEmail = context.User.Single(n => n.Email == "jesse@buttz.com").Email
+                       User = context.User.Single(n => n.Email == "jesse@buttz.com")
                    }
                 };
 
