@@ -1,4 +1,5 @@
 ﻿using BYOBlanketAPI.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BYOBlanketAPI.Data
 {
-    public class BYOBDbContext : DbContext
+    public class BYOBDbContext : IdentityDbContext
     {
         public BYOBDbContext(DbContextOptions<BYOBDbContext> options)
         : base(options)

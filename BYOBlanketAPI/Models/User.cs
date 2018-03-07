@@ -9,12 +9,19 @@ namespace BYOBlanketAPI.Models
 {
     public class User : IdentityUser
     {
-        [Key]
-        public int UserId { get; set; }
         [Required]
         public string FirstName { get; set; }
-
         [Required]
         public string LastName { get; set; }
+
+        public virtual ICollection<NapSpace> NapSpaces
+        {
+            get; set;
+        }
+
+        public virtual ICollection<Reservation> Reservations
+        {
+            get; set;
+        }
     }
 }

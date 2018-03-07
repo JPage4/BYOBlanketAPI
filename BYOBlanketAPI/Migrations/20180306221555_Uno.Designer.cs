@@ -12,9 +12,10 @@ using System;
 namespace BYOBlanketAPI.Migrations
 {
     [DbContext(typeof(BYOBDbContext))]
-    partial class BYOBDbContextModelSnapshot : ModelSnapshot
+    [Migration("20180306221555_Uno")]
+    partial class Uno
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

@@ -27,6 +27,5 @@ namespace BYOBlanketAPI.Models
 
         [Required]
         public User User {get; set;}
-
     }
 }
