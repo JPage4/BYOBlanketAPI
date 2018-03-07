@@ -30,7 +30,7 @@ namespace BYOBlanketAPI
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<BYOBDbContext>(opt => opt.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-            
+
             // Set up MVC service
             services.AddMvc()
                 .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -39,7 +39,7 @@ namespace BYOBlanketAPI
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<BYOBDbContext>()
                 .AddDefaultTokenProviders();
-                
+
             // Set up JWT authentication service
             services.AddAuthentication(options =>
             {
