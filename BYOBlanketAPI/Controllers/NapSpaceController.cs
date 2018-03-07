@@ -28,7 +28,7 @@ namespace BYOBlanketAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            var NapSpace = _context.NapSpace.ToList();
+            var NapSpace = _context.NapSpace.Include("User").ToList();
             if (NapSpace == null)
             {
                 return NotFound();
@@ -41,6 +41,7 @@ namespace BYOBlanketAPI.Controllers
 
         public IActionResult Get(int id)
         {
+            var NapSpace = _context.NapSpace.Include("User").ToList();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -75,6 +76,7 @@ namespace BYOBlanketAPI.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] NapSpace newNapSpace)
         {
+            //get current user async
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

@@ -27,8 +27,7 @@ namespace BYOBlanketAPI.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //
-            var Reservation = _context.Reservation.ToList();
+            var Reservation = _context.Reservation.Include("User").ToList();
             if (Reservation == null)
             {
                 return NotFound();
@@ -41,6 +40,7 @@ namespace BYOBlanketAPI.Controllers
 
         public IActionResult Get(int id)
         {
+            var Reservation = _context.Reservation.Include("User").ToList();
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

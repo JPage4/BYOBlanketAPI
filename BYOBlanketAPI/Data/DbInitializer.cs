@@ -16,7 +16,7 @@ namespace BYOBlanketAPI.Data
         {
             var context = serviceProvider.GetRequiredService<BYOBDbContext>();
             context.Database.EnsureCreated();
-            
+
                 var roleStore = new RoleStore<IdentityRole>(context);
                 var userstore = new UserStore<User>(context);
 
@@ -56,7 +56,7 @@ namespace BYOBlanketAPI.Data
                         Payment = "PayPal",
                         Address = "123 Buttz Lane",
                         PictureURL = "pic.com",
-                        User = context.User.Single(n => n.Email == "jesse@buttz.com")
+                        User = context.User.Single(n => n.Id == "8af4fde9-153f-47b8-bdc2-12ce342de91b")
                     },
                     new NapSpace {
                         Title = "Tent",
@@ -66,7 +66,7 @@ namespace BYOBlanketAPI.Data
                         Payment = "Cash Money",
                         Address = "1111 Yep Rd",
                         PictureURL = "pic.com",
-                        User = context.User.Single(n => n.Email == "jesse@buttz.com")
+                        User = context.User.Single(n => n.Id == "8af4fde9-153f-47b8-bdc2-12ce342de91b")
                     }
                 };
 
@@ -102,7 +102,7 @@ namespace BYOBlanketAPI.Data
                     context.Reservation.Add(r);
                 }
                 context.SaveChanges();
-   
+
         }
     }
 }
