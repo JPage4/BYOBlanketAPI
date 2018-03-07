@@ -24,11 +24,10 @@ namespace BYOBlanketAPI.Controllers
             _log = logger;
         }
 
-        //Get all product types
+        //Get all products
         [HttpGet]
         public IActionResult Get()
         {
-            //
             var NapSpace = _context.NapSpace.ToList();
             if (NapSpace == null)
             {
