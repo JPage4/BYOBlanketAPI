@@ -29,8 +29,8 @@ namespace BYOBlanketAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<BYOBDbContext>(opt => opt.UseSqlServer("DefaultConnection"));
-            
+            services.AddDbContext<BYOBDbContext>(opt => opt.UseSqlite("DefaultConnection"));
+
             // Set up MVC service
             services.AddMvc()
                 .AddJsonOptions(x => x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
@@ -39,7 +39,7 @@ namespace BYOBlanketAPI
             services.AddIdentity<User, IdentityRole>()
                 .AddEntityFrameworkStores<BYOBDbContext>()
                 .AddDefaultTokenProviders();
-                
+
             // Set up JWT authentication service
             services.AddAuthentication(options =>
             {
