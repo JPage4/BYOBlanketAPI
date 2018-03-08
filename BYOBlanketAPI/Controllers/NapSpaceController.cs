@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BYOBlanketAPI.Data;
 using BYOBlanketAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -13,15 +15,19 @@ using Microsoft.Extensions.Logging;
 namespace BYOBlanketAPI.Controllers
 {
     [Route("api/[controller]")]
+    // This task retrieves the currently authenticated user
     public class NapSpaceController : Controller
     {
+        private readonly UserManager<User> _userManager;
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private BYOBDbContext _context;
         private ILogger _log;
 
-        public NapSpaceController(BYOBDbContext ctx, ILogger<NapSpaceController> logger)
+        public NapSpaceController(BYOBDbContext ctx, ILogger<NapSpaceController> logger, UserManager<User> userManager)
         {
             _context = ctx;
             _log = logger;
+            _userManager = userManager;
         }
 
         //Get all products
@@ -74,13 +80,20 @@ namespace BYOBlanketAPI.Controllers
 }
 */
         [HttpPost]
-        public IActionResult Post([FromBody] NapSpace newNapSpace)
+        [Authorize]
+        public async Task<IActionResult> Post([FromBody] NapSpace newNapSpace)
         {
-            //get current user async
+            ModelState.Remove("User");
+
+
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
+
+            newNapSpace.User = user;
 
             _context.NapSpace.Add(newNapSpace);
 
@@ -100,7 +113,7 @@ namespace BYOBlanketAPI.Controllers
                 }
             }
 
-            return CreatedAtRoute("GetSingleNapSpacet", new { id = newNapSpace.NapSpaceId }, newNapSpace);
+            return CreatedAtRoute("GetSingleNapSpace", new { id = newNapSpace.NapSpaceId }, newNapSpace);
         }
 
         private bool NapSpaceExists(int NapSpaceId)
