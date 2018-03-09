@@ -30,7 +30,7 @@ namespace BYOBlanketAPI.Controllers
 
         //Get all products
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GET()
         {
             var NapSpace = _context.NapSpace.Include("User").ToList();
             if (NapSpace == null)
@@ -43,7 +43,7 @@ namespace BYOBlanketAPI.Controllers
         // GET a single product type
         [HttpGet("{id}", Name = "GetSingleNapSpace")]
 
-        public IActionResult Get(int id)
+        public IActionResult GET(int id)
         {
             var NapSpace = _context.NapSpace.Include("User").ToList();
             if (!ModelState.IsValid)
@@ -79,7 +79,7 @@ namespace BYOBlanketAPI.Controllers
 */
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post([FromBody] NapSpace newNapSpace)
+        public async Task<IActionResult> POST([FromBody] NapSpace newNapSpace)
         {
             ModelState.Remove("User");
             User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();

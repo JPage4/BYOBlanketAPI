@@ -30,7 +30,7 @@ namespace BYOBlanketAPI.Controllers
 
         //Get all product types
         [HttpGet]
-        public IActionResult Get()
+        public IActionResult GET()
         {
             var Reservation = _context.Reservation.Include("User").ToList();
             if (Reservation == null)
@@ -43,7 +43,7 @@ namespace BYOBlanketAPI.Controllers
         // GET a single product type
         [HttpGet("{id}", Name = "GetSingleReservation")]
 
-        public IActionResult Get(int id)
+        public IActionResult GET(int id)
         {
             var Reservation = _context.Reservation.Include("User").ToList();
             if (!ModelState.IsValid)
@@ -76,7 +76,7 @@ namespace BYOBlanketAPI.Controllers
 */
         [HttpPost]
         [Authorize]
-        public async Task<IActionResult> Post([FromBody] Reservation newReservation)
+        public async Task<IActionResult> POST([FromBody] Reservation newReservation)
         {
             ModelState.Remove("User");
             User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
