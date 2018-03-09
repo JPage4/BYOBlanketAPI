@@ -4,7 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using BYOBlanketAPI.Data;
 using BYOBlanketAPI.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -14,13 +16,16 @@ namespace BYOBlanketAPI.Controllers
     [Route("api/[controller]")]
     public class ReservationController : Controller
     {
+        private readonly UserManager<User> _userManager;
+        private Task<User> GetCurrentUserAsync() => _userManager.GetUserAsync(HttpContext.User);
         private BYOBDbContext _context;
         private ILogger _log;
 
-        public ReservationController(BYOBDbContext ctx, ILogger<ReservationController> logger)
+        public ReservationController(BYOBDbContext ctx, ILogger<ReservationController> logger, UserManager<User> userManager)
         {
             _context = ctx;
             _log = logger;
+            _userManager = userManager;
         }
 
         //Get all product types
@@ -65,20 +70,23 @@ namespace BYOBlanketAPI.Controllers
 {
     "NapSpaceTitle": "Real Big Bed",
     "CalendarColor": "#5f6dd0",
-    "StartDateTime": "new DateTime(2018, 3, 15, 12, 0, 0)",
-    "EndDateTime": "new DateTime(2018, 3, 15, 1, 0, 0)",
-    "NapSpaceId": ?,
-    "User": ?
+    "StartDateTime": (2018, 3, 15, 12, 0, 0),
+    "EndDateTime": (2018, 3, 15, 1, 0, 0)
 }
 */
         [HttpPost]
-        public IActionResult Post([FromBody] Reservation newReservation)
+        [Authorize]
+        public async Task<IActionResult> Post([FromBody] Reservation newReservation)
         {
+            ModelState.Remove("User");
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
 
+            newReservation.User = user;
             _context.Reservation.Add(newReservation);
 
             try
@@ -107,8 +115,12 @@ namespace BYOBlanketAPI.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult PUT(int id, [FromBody] Reservation newReservation)
+        [Authorize]
+        public async Task<IActionResult> PUT(int id, [FromBody] Reservation newReservation)
         {
+            ModelState.Remove("User");
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -118,6 +130,7 @@ namespace BYOBlanketAPI.Controllers
                 return BadRequest();
             }
 
+            newReservation.User = user;
             _context.Reservation.Update(newReservation);
 
             try
@@ -136,13 +149,17 @@ namespace BYOBlanketAPI.Controllers
                 }
             }
 
-            return new StatusCodeResult(StatusCodes.Status204NoContent);
+            return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult DELETE(int id)
+        [Authorize]
+        public async Task<IActionResult> DELETE(int id)
         {
+            ModelState.Remove("User");
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);

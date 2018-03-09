@@ -11,11 +11,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
-
 namespace BYOBlanketAPI.Controllers
 {
     [Route("api/[controller]")]
-    // This task retrieves the currently authenticated user
     public class NapSpaceController : Controller
     {
         private readonly UserManager<User> _userManager;
@@ -84,8 +82,6 @@ namespace BYOBlanketAPI.Controllers
         public async Task<IActionResult> Post([FromBody] NapSpace newNapSpace)
         {
             ModelState.Remove("User");
-
-
             User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
 
             if (!ModelState.IsValid)
@@ -123,8 +119,12 @@ namespace BYOBlanketAPI.Controllers
 
         // PUT api/values/5
         [HttpPut("{id}")]
-        public IActionResult PUT(int id, [FromBody] NapSpace newNapSpace)
+        [Authorize]
+        public async Task<IActionResult> PUT(int id, [FromBody] NapSpace newNapSpace)
         {
+            ModelState.Remove("User");
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
@@ -133,12 +133,13 @@ namespace BYOBlanketAPI.Controllers
             {
                 return BadRequest();
             }
+            newNapSpace.User = user;
 
             _context.NapSpace.Update(newNapSpace);
 
             try
             {
-                _context.SaveChanges();
+               await _context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException)
             {
@@ -152,13 +153,17 @@ namespace BYOBlanketAPI.Controllers
                 }
             }
 
-            return new StatusCodeResult(StatusCodes.Status204NoContent);
+            return new StatusCodeResult(StatusCodes.Status200OK);
         }
 
         // DELETE api/values/5
         [HttpDelete("{id}")]
-        public IActionResult DELETE(int id)
+        [Authorize]
+        public async Task<IActionResult> DELETE(int id)
         {
+            ModelState.Remove("User");
+            User user = await _context.User.Where(u => u.UserName == User.Identity.Name).SingleOrDefaultAsync();
+
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
