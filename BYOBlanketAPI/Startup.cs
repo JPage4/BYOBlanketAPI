@@ -29,6 +29,15 @@ namespace BYOBlanketAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            // Set up global CORS policy for controllers
+            services.AddCors(options =>
+            {
+                options.AddPolicy("CorsPolicy",
+                    builder => builder.AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader()
+                    .AllowCredentials() );
+            });
             services.AddDbContext<BYOBDbContext>(opt => opt.UseSqlite(Configuration.GetConnectionString("DefaultConnection")));
 
             // Set up MVC service
@@ -69,6 +78,7 @@ namespace BYOBlanketAPI
                 app.UseDeveloperExceptionPage();
             }
             app.UseAuthentication();
+            app.UseCors("CorsPolicy");
             app.UseMvc(); ;
         }
     }
